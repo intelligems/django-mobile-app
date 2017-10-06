@@ -1,4 +1,6 @@
-# Django Mobile App ![alt text](https://intelligems.s3.amazonaws.com/intelligems_logo.png "Intelligems - Software Elite Firm")
+# Django Mobile App 
+<a href="https://www.intelligems.eu" target="_blank"><img src="https://intelligems.s3.amazonaws.com/intelligems_logo.png" width="50" height="50"></a>
+
 An easy to use project template in Django 1.11, focused on a custom backend for a mobile app. 
 
 # General
