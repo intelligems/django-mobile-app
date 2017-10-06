@@ -1,5 +1,4 @@
-# Django Mobile App 
-<a href="https://www.intelligems.eu" target="_blank"><img src="https://intelligems.s3.amazonaws.com/intelligems_logo.png" width="50" height="50"></a>
+# Django Mobile App <a href="https://www.intelligems.eu" target="_blank"><img src="https://intelligems.s3.amazonaws.com/intelligems_logo.png" width="40" height="40"></a>
 
 An easy to use project template in Django 1.11, focused on a custom backend for a mobile app. 
 
