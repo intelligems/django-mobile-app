@@ -1,4 +1,5 @@
-# Django Mobile App
+# Django Mobile App ![alt text](https://intelligems.s3.amazonaws.com/intelligems_logo.png "Intelligems - Software Elite Firm")
+An easy to use project template in Django 1.11, focused on a custom backend for a mobile app. 
 
 # General
 This repo acts as a decent starting point for those who are looking for a custom backend deployment for their mobile app.
@@ -14,3 +15,30 @@ It includes a full-serving django project which exposes a RESTful API, manages u
 - `django-filters`, which provides filtering capabilities in the DRF API views
 - `django-guardian`, for custom object or model level permissions
  
+# Prerequisites
+- Python3
+- Git
+- pip
+- virtualenv (recommended)
+
+# How to use
+1. Clone this repo on your local machine: 
+```bash
+git clone https://github.com/intelligems/django-mobile-app
+```
+2. We strongly advise to create a Python virtual environment and install the project requirements in there: 
+```bash
+mkvirtualenv <env-name> --python=`which python3`
+``` 
+3. Install project requirements inside your newly created local virtual environment:
+```bash
+pip install -r requirements.txt
+```
+4. It's time to perform your first database migrations - no worries, we have included them too:
+```bash
+python manage.py migrate
+```
+5. Run the server!
+```bash
+python manage.py runserver 0.0.0.0:80
+```
