@@ -6,6 +6,9 @@ An easy to use project template in Django 1.11, focused on a custom backend for 
 This repo acts as a decent starting point for those who are looking for a custom backend deployment for their mobile app.
 It includes a full-serving django project which exposes a RESTful API, manages user instances and is highly configurable.
 
+In fact, this project is not a package that you can include in your project and use right-away, but it's a project template that you can download, 
+extend and keep working on it as a base for your new project.
+
 3rd-party apps it includes:
 - `django-storages`, to store files in AWS S3 (the most commonly used block storage)
 - `django-allauth`, for social media authentication
@@ -15,6 +18,7 @@ It includes a full-serving django project which exposes a RESTful API, manages u
 - `django-rest-auth`, to provide social media authentication over the API
 - `django-filters`, which provides filtering capabilities in the DRF API views
 - `django-guardian`, for custom object or model level permissions
+- `celery`, for background tasks handling. By default, it's expected to be used for device registration on the AWS SNS service.
  
 # Prerequisites
 - Python3
@@ -42,4 +46,20 @@ python manage.py migrate
 5. Run the server!
 ```bash
 python manage.py runserver 0.0.0.0:80
+```
+
+# Registering Push Devices
+For the `push_devices` app usage, you are expected to use the `AbstractMobileDevice` abstract model.
+You can extend it and add any fields you wish, but you are not allowed (by Django) to override the same fields that the `AbstractMobileDevice` model uses.
+
+In order to create a push device, inside the create view of your devices' API, import the sns registration method
+```python
+from core.mobile_devices.tasks import register_device_on_sns
+```
+and use the `delay` method to register the newly created device on SNS. This will assign the ARN endpoint on the device model, so that you will be able to publish push notifications to your registered push device.
+
+For example: 
+```python
+device = Device.object.create(**data)
+register_device_on_sns.delay(device)
 ```

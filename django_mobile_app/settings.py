@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'rest_framework_swagger',
-    'storages'
+    'storages',
 
 ]
 
@@ -247,6 +247,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # AWS config
+AWS_REGION = os.getenv('AWS_REGION')
 AWS_LOCATION = os.getenv('AWS_LOCATION')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', None)
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', None)
@@ -259,6 +260,10 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_QUERYSTRING_AUTH = False  # or set it to True, depending on your needs
 
+# SNS Config
+AWS_IOS_APPLICATION_ARN = os.getenv('AWS_IOS_APPLICATION_ARN')
+AWS_ANDROID_APPLICATION_ARN = os.getenv('AWS_ANDROID_APPLICATION_ARN')
+
 # Mail config
 ANYMAIL = {
     'MAILGUN_API_KEY': os.getenv('MAILGUN_API_KEY'),
@@ -266,3 +271,8 @@ ANYMAIL = {
 }
 EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 DEFAULT_FROM_EMAIL = 'default@yourdomain.com'
+
+# Celery config
+REDIS_URL = os.getenv('REDIS_URL')
+CELERY_BROKER_URL = f'{REDIS_URL}/0'
+CELERY_RESULT_BACKEND = f'{REDIS_URL}/1'
