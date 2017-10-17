@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.instagram',
 
     'anymail',
+    'django_extensions',
     'guardian',
     'rest_framework',
     'rest_framework.authtoken',

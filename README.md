@@ -19,6 +19,7 @@ extend and keep working on it as a base for your new project.
 - `django-filters`, which provides filtering capabilities in the DRF API views
 - `django-guardian`, for custom object or model level permissions
 - `celery`, for background tasks handling. By default, it's expected to be used for device registration on the AWS SNS service.
+- `django-extensions`, offering a collection of custom extensions for Django
  
 # Prerequisites
 - Python3
