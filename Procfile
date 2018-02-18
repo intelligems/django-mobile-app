@@ -1,0 +1,1 @@
+web: gunicorn django_mobile_app.wsgi
