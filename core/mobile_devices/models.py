@@ -1,10 +1,16 @@
+from uuid import uuid4
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from core.utils.uuid import get_fresh_uuid
-
 
 class AbstractMobileDevice(models.Model):
+    """
+    Abstract model to extend while creating your custom Devices model for your
+    project. By default, this offers the bare-minimum fields to register push-enabled devices,
+    register them on AWS SNS and store this information in the database.
+    """
+
     APN = 'apn'
     GCM = 'gcm'
     DEVICE_TYPES = (
@@ -12,11 +18,10 @@ class AbstractMobileDevice(models.Model):
         (GCM, 'GCM')
     )
 
-    id = models.CharField(
-        max_length=60,
+    id = models.UUIDField(
         primary_key=True,
         unique=True,
-        default=get_fresh_uuid
+        default=uuid4
     )
     push_device_type = models.CharField(
         verbose_name='Push Device Type',
