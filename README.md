@@ -40,11 +40,13 @@ mkvirtualenv <env-name> --python=`which python3`
 ```bash
 pip install -r requirements.txt
 ```
-4. It's time to perform your first database migrations - no worries, we have included them too:
+4. Inside the `settings` path, create an `.env` file. Add in there all the environment variables that should be included
+in the project runtime.
+5. It's time to perform your first database migrations - no worries, we have included them too:
 ```bash
 python manage.py migrate
 ```
-5. Run the server!
+6. Run the server!
 ```bash
 python manage.py runserver 0.0.0.0:80
 ```
@@ -61,6 +63,6 @@ and use the `delay` method to register the newly created device on SNS. This wil
 
 For example: 
 ```python
-device = Device.object.create(**data)
+device = Device.objects.create(**data)
 register_device_on_sns.delay(device)
 ```

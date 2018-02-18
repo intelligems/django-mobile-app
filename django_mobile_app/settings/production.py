@@ -40,6 +40,10 @@ LOGGING = {
         },
     },
     'handlers': {
+        'sentry': {
+            'level': env('LOGGING_LEVEL'),  # To capture more than ERROR, change to WARNING, INFO, etc.
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        },
         'console': {
             'level': env('LOGGING_LEVEL', default='INFO'),
             'filters': ['require_debug_true'],
@@ -53,14 +57,29 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
+            'handlers': ['console', 'sentry'],
             'propagate': True,
         },
+        'django.db.backends': {
+            'level': env('LOGGING_LEVEL'),
+            'handlers': ['console', 'sentry'],
+            'propagate': False,
+        },
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['mail_admins', 'sentry'],
             'level': env('LOGGING_LEVEL', default='WARNING'),
             'propagate': False,
-        }
+        },
+        'raven': {
+            'level': env('LOGGING_LEVEL'),
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': env('LOGGING_LEVEL'),
+            'handlers': ['console'],
+            'propagate': False,
+        },
     }
 }
 
