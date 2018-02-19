@@ -10,7 +10,7 @@ In fact, this project is not a package that you can include in your project and 
 extend and keep working on it as a base for your new project.
 
 3rd-party apps it includes:
-- `django-storages`, to store files in AWS S3 (the most commonly used block storage)
+- `django-storages`, to store files in AWS S3 (the most commonly used object storage)
 - `django-allauth`, for social media authentication
 - `django-anymail[mailgun]`, to send transactional emails using Mailgun (first 10k messages/month are free)
 - `djangorestframework`, for the RESTful API
