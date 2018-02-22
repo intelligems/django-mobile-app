@@ -210,10 +210,11 @@ REDIS_URL = env('REDIS_URL', default=None)
 CELERY_BROKER_URL = f'{REDIS_URL}/0'
 CELERY_RESULT_BACKEND = f'{REDIS_URL}/1'
 
-# Sentry config
-RAVEN_CONFIG = {
-    'dsn': env('SENTRY_DSN', default=None),
-    # If you are using git, you can also automatically configure the
-    # release based on the git info.
-    'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
-}
+# Sentry config (optional)
+if 'SENTRY_DSN' in os.environ:
+    RAVEN_CONFIG = {
+        'dsn': env('SENTRY_DSN', default=None),
+        # If you are using git, you can also automatically configure the
+        # release based on the git info.
+        'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    }
