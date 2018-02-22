@@ -1,0 +1,19 @@
+language: python
+
+services:
+  - postgresql
+
+addons:
+  postgresql: "9.6"
+
+python:
+  - "3.6"
+
+install:
+  - "pip install -r requirements.txt"
+
+before_script:
+  - psql -c 'create database test;' -U postgres
+  - python manage.py migrate
+
+script: python manage.py test
