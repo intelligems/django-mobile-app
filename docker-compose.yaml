@@ -1,0 +1,48 @@
+version: '3.0'
+
+services:
+  postgres:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379
+    volumes:
+      - redisdata:/data
+
+  web:
+    build: ./docker/web
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file: '.env'
+
+    ports:
+      - 8000
+    volumes:
+      - mediadata:/media
+
+  worker:
+    build: ./
+    command: celery -A django_mobile_app worker -l info --app=django_mobile_app.celery:app
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres/db
+      REDIS_URL: redis://redis:6379
+    volumes_from:
+      - web
+    links:
+      - redis
+      - postgres
+    depends_on:
+      - redis
+      - postgres
+
+volumes:
+  postgres_data:
+  redisdata:
+  mediadata:
