@@ -47,5 +47,5 @@ class AbstractMobileDevice(models.Model):
         return True if self.push_device_type == self.APN else False
 
     @property
-    def ios_android(self):
+    def is_android(self):
         return True if self.push_device_type == self.GCM else False
