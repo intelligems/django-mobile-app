@@ -2,6 +2,9 @@
 
 An easy to use project template in Django 1.11, focused on a custom backend for a mobile app. [![Build Status](https://travis-ci.org/intelligems/django-mobile-app.svg?branch=master)](https://travis-ci.org/intelligems/django-mobile-app)
 
+# Repository unmaintained
+As Intelligems has stopped operations since Aug19, this repository remains unmaintained. Whoever may be interested to keep it up-to-date or extend it, DM [koslib](twitter.com/koslib) to arrange project transfer.
+
 # General
 This repo acts as a decent starting point for those who are looking for a custom backend deployment for their mobile app.
 It includes a full-serving django project which exposes a RESTful API, manages user instances and is highly configurable.
